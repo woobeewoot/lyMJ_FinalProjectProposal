@@ -8,11 +8,11 @@ Star Ranger Run will be a runner-minigame where the player plays as a cowbow on 
 
 ## Features
 - Feature 1
-	Animated sprite; I will be creating simple art assets for the minigame
+	- Animated sprite; I will be creating simple art assets for the minigame
 - Feature 2
-	Audio queue for jumping and certain score milestones; I will need to figure out how to implement sound queues in my game
+	- Audio queue for jumping and certain score milestones; I will need to figure out how to implement sound queues in my game
 - Feature N 
-	"Moving platform"; I will program a moving track containing obstacles where a collision could end the game
+	- "Moving platform"; I will program a moving track containing obstacles where a collision could end the game
 
 ## Challenges
 - implementing sprites for character animation
