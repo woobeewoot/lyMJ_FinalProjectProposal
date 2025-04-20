@@ -1,2 +1,9 @@
-# lyMJ_FinalProjectProposal
-final project proposal
+# Star Ranger Run
+
+## Demo
+Demo Video: <URL>
+
+## GitHub Repository
+GitHub Repo: <URL>
+
+## Description
