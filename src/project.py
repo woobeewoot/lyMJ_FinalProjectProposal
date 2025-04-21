@@ -1,5 +1,6 @@
 import pygame
 import os
+import random
 pygame.init()
 
 #screen
@@ -94,10 +95,29 @@ class StarRanger:
     def draw(self, screen):
         screen.blit(self.image, (self.player_rect.x, self.player_rect.y))
 
+class Cloud:
+    def __init__(self):
+        self.x = screen_width + random.randint(800, 1000)
+        self.y = random.randint(50, 100)
+        self.image = cloud[0]
+        self.width = self.image.get_width()
+
+    def update(self):
+        self.x -= game_speed
+        if self.x < -self.width:
+            self.x = screen_width + random.randint(2500, 3000)
+            self.y = random.randint (50, 100)
+
+    def draw(self, screen):
+        screen.blit(self.image, (self.x, self.y))
+
 def main():
+    global game_speed
     run = True
     clock = pygame.time.Clock()
     player = StarRanger()
+    cloud = Cloud()
+    game_speed = 14
 
     while run:
         for event in pygame.event.get():
@@ -109,9 +129,13 @@ def main():
         player.draw(screen)
         player.update(userInput)
 
+        cloud.draw(screen)
+        cloud.update()
+
         clock.tick(30)
         pygame.display.update()
 
 
 
-main()
+if __name__ == "__main__":
+    main()
