@@ -25,8 +25,8 @@ track = [pygame.image.load(os.path.join("baseAssets", "Track.png"))]
 
 class StarRanger:
     x_pos = 80
-    y_pos = 310
-    y_pos_duck = 340
+    y_pos = 305
+    y_pos_duck = 330
     JUMP_VEL = 8.5 #velocity
 
     def __init__(self):
@@ -127,7 +127,7 @@ def main():
         screen.blit(track[0], (x_pos_bg, y_pos_bg))
         screen.blit(track[0], (image_width + x_pos_bg, y_pos_bg))
         if x_pos_bg <= -image_width: #creates 'continuous' bg
-            screen.blit(track, (image_width + x_pos_bg, y_pos_bg))
+            screen.blit(track[0], (image_width + x_pos_bg, y_pos_bg))
             x_pos_bg = 0
         x_pos_bg -= game_speed
 
@@ -137,13 +137,13 @@ def main():
                 run = False
         screen.fill((255, 255, 255))
         userInput = pygame.key.get_pressed()
-
-        player.draw(screen)
-        player.update(userInput)
-
+        
         background()
         cloud_int.draw(screen)
+        player.draw(screen)
+        
         cloud_int.update(game_speed)
+        player.update(userInput)
 
         clock.tick(30)
         pygame.display.update()
