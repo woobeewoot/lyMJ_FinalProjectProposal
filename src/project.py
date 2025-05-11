@@ -111,6 +111,21 @@ class Cloud:
     def draw(self, screen):
         screen.blit(self.image, (self.x, self.y))
 
+class Obstacles:
+    def __init__(selt, image, type):
+        self.image = image
+        self.type = type
+        self.rect = self.image[self.type] .get_rect()
+        self.rect.x = screen_width
+
+    def update(self):
+        self.rect.x -= game_speed
+        if self.rect.x < -self.rect.width:
+            obstacles.pop()
+
+    def draw(self, screen):
+        screen.blit(self.image[self.type], self.rect)
+
 def main():
     global game_speed, x_pos_bg, y_pos_bg, pts
     run = True
