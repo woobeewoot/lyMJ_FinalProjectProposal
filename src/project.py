@@ -112,7 +112,7 @@ class Cloud:
         screen.blit(self.image, (self.x, self.y))
 
 def main():
-    global game_speed, x_pos_bg, y_pos_bg
+    global game_speed, x_pos_bg, y_pos_bg, pts
     run = True
     clock = pygame.time.Clock()
     player = StarRanger()
@@ -120,6 +120,19 @@ def main():
     game_speed = 14
     x_pos_bg = 0
     y_pos_bg = 380
+    pts = 0
+    font = pygame.font.Font('freesansbold.ttf', 20)
+
+    def score():
+        global pts, game_speed
+        pts += 1
+        if pts % 100 == 0:
+            game_speed += 1
+
+        text = font.render("Points: " + str(pts), True, (0, 0, 0))
+        textBox = text.get_rect ()
+        textBox.center = (1000, 40)
+        screen.blit(text, textBox)
 
     def background():
         global x_pos_bg, y_pos_bg
@@ -144,6 +157,7 @@ def main():
         
         cloud_int.update(game_speed)
         player.update(userInput)
+        score()
 
         clock.tick(30)
         pygame.display.update()
