@@ -102,7 +102,7 @@ class Cloud:
         self.image = cloud[0]
         self.width = self.image.get_width()
 
-    def update(self):
+    def update(self, game_speed):
         self.x -= game_speed
         if self.x < -self.width:
             self.x = screen_width + random.randint(2500, 3000)
@@ -116,18 +116,18 @@ def main():
     run = True
     clock = pygame.time.Clock()
     player = StarRanger()
-    cloud = Cloud()
+    cloud_int = Cloud()
     game_speed = 14
     x_pos_bg = 0
     y_pos_bg = 380
 
     def background():
         global x_pos_bg, y_pos_bg
-        image_width = BG.get_width()
-        SCREEN.blit(BG, (x_pos_bg, y_pos_bg))
-        SCREEN.blit(BG, (image_width + x_pos_bg, y_pos_bg))
+        image_width = track[0].get_width()
+        screen.blit(track[0], (x_pos_bg, y_pos_bg))
+        screen.blit(track[0], (image_width + x_pos_bg, y_pos_bg))
         if x_pos_bg <= -image_width: #creates 'continuous' bg
-            SCREEN.blit(BG, (image_width + x_pos_bg, y_pos_bg))
+            screen.blit(track, (image_width + x_pos_bg, y_pos_bg))
             x_pos_bg = 0
         x_pos_bg -= game_speed
 
@@ -142,8 +142,8 @@ def main():
         player.update(userInput)
 
         background()
-        cloud.draw(screen)
-        cloud.update()
+        cloud_int.draw(screen)
+        cloud_int.update(game_speed)
 
         clock.tick(30)
         pygame.display.update()
