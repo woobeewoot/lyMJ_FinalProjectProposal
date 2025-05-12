@@ -1,6 +1,7 @@
 import pygame
 import os
 import random
+import sys
 pygame.init()
 
 #screen
@@ -231,6 +232,30 @@ def menu(death_count):
     run = True
     while run:
         screen.fill((255, 255, 255))
-        font = pygame.font.Font('sfreesansbold.ttf', 30)
+        font = pygame.font.Font('freesansbold.ttf', 30)
 
-        if
+        if death_count == 0:
+            text = font.render("Press any Key to Start", True, (0, 0, 0))
+        elif death_count > 0:
+            text = font.render("Press any Key to Restart", True, (0, 0, 0))
+            score = font.render("Your Score: " + str(pts), True, (0, 0, 0))
+            scoreBox = score.get_rect()
+            scoreBox.center = (screen_width // 2, screen_height // 2 + 50)
+            screen.blit(score, scoreBox)
+        textBox = text.get_rect()
+        textBox.center = (screen_width // 2, screen_height // 2 - 140)
+        screen.blit(text, textBox)
+        pygame.display.update()
+        # quit game safely
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+                pygame.quit()
+                quit()
+                sys.exit()
+            #restart game
+            if event.type == pygame.KEYDOWN:
+                main()
+
+
+menu(death_count=0)
