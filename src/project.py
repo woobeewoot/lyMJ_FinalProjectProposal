@@ -14,8 +14,13 @@ ducking = [pygame.image.load(os.path.join("baseAssets", "DinoDuck1.png")),
            pygame.image.load(os.path.join("baseAssets", "DinoDuck2.png"))]
 jumping = [pygame.image.load(os.path.join("baseAssets", "DinoJump.png"))]
 
-s_cactus = [pygame.image.load(os.path.join("baseAssets", "SmallCactus1.png"))]
-l_cactus = [pygame.image.load(os.path.join("baseAssets", "LargeCactus1.png"))]
+s_cactus = [pygame.image.load(os.path.join("baseAssets", "SmallCactus1.png")),
+            pygame.image.load(os.path.join("baseAssets", "SmallCactus2.png")),
+            pygame.image.load(os.path.join("baseAssets", "SmallCactus3.png"))]
+
+l_cactus = [pygame.image.load(os.path.join("baseAssets", "LargeCactus1.png")),
+            pygame.image.load(os.path.join("baseAssets", "LargeCactus2.png")),
+            pygame.image.load(os.path.join("baseAssets", "LargeCactus3.png"))]
 
 flyingMan = [pygame.image.load(os.path.join("baseAssets", "Bird1.png"))]
 
@@ -115,26 +120,26 @@ class Obstacle:
     def __init__(self, image, type):
         self.image = image
         self.type = type
-        self.rect = self.image[self.type] .get_rect()
+        self.rect = self.image[self.type].get_rect()
         self.rect.x = screen_width
 
     def update(self, game_speed):
         self.rect.x -= game_speed
         if self.rect.x < -self.rect.width:
-            obstacles.remove(self)
+            obstacles.pop()
 
     def draw(self, screen):
         screen.blit(self.image[self.type], self.rect)
 
 class SmallKaku(Obstacle):
     def __init__(self, image):
-        self.type = random.randint(0,0)
+        self.type = random.randint(0,2)
         super().__init__(image, self.type)
         self.rect.y = 325
 
 class LargeKaku(Obstacle):
     def __init__(self, image):
-        self.type = random.randint(0,0)
+        self.type = random.randint(0,2)
         super().__init__(image, self.type)
         self.rect.y = 300
 
@@ -150,14 +155,13 @@ class PropellerMan(Obstacle):
         screen.blit(self.image[frame], self.rect)
         self.index += 1
 
-
 def main():
     global game_speed, x_pos_bg, y_pos_bg, pts, obstacles
     run = True
     clock = pygame.time.Clock()
     player = StarRanger()
     cloud_int = Cloud()
-    game_speed = 14
+    game_speed = 15
     x_pos_bg = 0
     y_pos_bg = 380
     pts = 0
@@ -171,7 +175,7 @@ def main():
             game_speed += 1
 
         text = font.render("Points: " + str(pts), True, (0, 0, 0))
-        textBox = text.get_rect ()
+        textBox = text.get_rect()
         textBox.center = (1000, 40)
         screen.blit(text, textBox)
 
@@ -196,13 +200,13 @@ def main():
         cloud_int.draw(screen)
         player.draw(screen)
 
-        choice = random.randint(0,2)
-        if choice == 0:
-            obstacles.append(SmallKaku(s_cactus))
-        elif choice == 1:
-            obstacles.append(LargeKaku(l_cactus))
-        else:
-            obstacles.append(PropellerMan(flyingMan))
+        if len(obstacles) == 0:
+            if random.randint(0, 2) == 0:
+                obstacles.append(SmallKaku(s_cactus))
+            elif random.randint(0, 2) == 1:
+                obstacles.append(LargeKaku(l_cactus))
+            elif random.randint(0, 2) == 2:
+                obstacles.append(PropellerMan(flyingMan))
 
         for obstacle in obstacles:
             obstacle.draw(screen)
