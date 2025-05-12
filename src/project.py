@@ -167,6 +167,7 @@ def main():
     pts = 0
     font = pygame.font.Font('freesansbold.ttf', 20)
     obstacles = []
+    death_count = 0
 
     def score():
         global pts, game_speed
@@ -212,7 +213,9 @@ def main():
             obstacle.draw(screen)
             obstacle.update(game_speed)
             if player.player_rect.colliderect(obstacle.rect):
-                pygame.draw.rect(screen, (255, 0, 0), player.player_rect, 2)
+                pygame.time.delay(2000)
+                death_count += 1
+                menu(death_count)
         
         cloud_int.update(game_speed)
         player.update(userInput)
@@ -223,5 +226,11 @@ def main():
 
 
 
-if __name__ == "__main__":
-    main()
+def menu(death_count):
+    global pts
+    run = True
+    while run:
+        screen.fill((255, 255, 255))
+        font = pygame.font.Font('sfreesansbold.ttf', 30)
+
+        if
