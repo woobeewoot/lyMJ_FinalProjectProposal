@@ -8,6 +8,7 @@ pygame.init()
 screen_height = 600
 screen_width = 1100
 screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("Star Ranger Run")
 
 running = [pygame.image.load(os.path.join("baseAssets", "DinoRun1.png")),
            pygame.image.load(os.path.join("baseAssets", "DinoRun2.png"))]
@@ -28,6 +29,8 @@ flyingMan = [pygame.image.load(os.path.join("baseAssets", "Bird1.png"))]
 cloud = [pygame.image.load(os.path.join("baseAssets", "Cloud.png"))]
 
 track = [pygame.image.load(os.path.join("baseAssets", "Track.png"))]
+
+BG = [pygame.image.load(os.path.join("baseAssets", "BG.png"))]
 
 class StarRanger:
     x_pos = 80
@@ -162,7 +165,7 @@ def main():
     clock = pygame.time.Clock()
     player = StarRanger()
     cloud_int = Cloud()
-    game_speed = 15
+    game_speed = 20
     x_pos_bg = 0
     y_pos_bg = 380
     pts = 0
@@ -195,9 +198,9 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-        screen.fill((255, 255, 255))
         userInput = pygame.key.get_pressed()
         
+        screen.blit(BG[0], (0, 0))
         background()
         cloud_int.draw(screen)
         player.draw(screen)
@@ -214,7 +217,7 @@ def main():
             obstacle.draw(screen)
             obstacle.update(game_speed)
             if player.player_rect.colliderect(obstacle.rect):
-                pygame.time.delay(2000)
+                pygame.time.delay(1000)
                 death_count += 1
                 menu(death_count)
         
@@ -224,8 +227,6 @@ def main():
 
         clock.tick(30)
         pygame.display.update()
-
-
 
 def menu(death_count):
     global pts
