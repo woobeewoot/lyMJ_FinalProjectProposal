@@ -1,2 +1,6 @@
-pygame
-pillow
+import pygame
+import os
+import random
+import sys
+
+- also requires art software(using krita) capable of creating/editing sprites
