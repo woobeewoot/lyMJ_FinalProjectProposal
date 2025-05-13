@@ -24,7 +24,7 @@ l_cactus = [pygame.image.load(os.path.join("baseAssets", "LargeCactus1.png")),
             pygame.image.load(os.path.join("baseAssets", "LargeCactus2.png")),
             pygame.image.load(os.path.join("baseAssets", "LargeCactus3.png"))]
 
-flyingMan = [pygame.image.load(os.path.join("baseAssets", "Bird1.png"))]
+flyingMan = [pygame.image.load(os.path.join("baseAssets", "Ceci.png"))]
 
 cloud = [pygame.image.load(os.path.join("baseAssets", "Cloud.png"))]
 
