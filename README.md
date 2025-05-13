@@ -2,8 +2,10 @@
 
 ## Demo
 Demo Video: https://youtu.be/ckAA3-6tbEw
+Demo Video: https://youtu.be/ckAA3-6tbEw
 
 ## GitHub Repository
+GitHub Repo: https://github.com/woobeewoot/lyMJ_FinalProjectProposal.git
 GitHub Repo: https://github.com/woobeewoot/lyMJ_FinalProjectProposal.git
 
 ## Description
