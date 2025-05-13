@@ -1,7 +1,7 @@
 # Star Ranger Run
 
 ## Demo
-Demo Video: <URL>
+Demo Video: https://youtu.be/ckAA3-6tbEw
 
 ## GitHub Repository
 GitHub Repo: https://github.com/woobeewoot/lyMJ_FinalProjectProposal.git
